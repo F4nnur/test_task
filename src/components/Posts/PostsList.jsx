@@ -1,17 +1,28 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setPosts} from "../../store/actions/posts/posts.actions";
+import {asyncSetPosts} from "../../store/actions/posts/posts.actions";
 
 const PostsList = () => {
     const postData = useSelector(state => state.postsReducer)
     const dispatch = useDispatch()
-    console.log(postData)
+
     useEffect(() => {
-        dispatch(setPosts())
-    },[])
+        dispatch(asyncSetPosts())
+    }, dispatch)
+
+    if (postData.isLoading){
+        return <h1>Loading</h1>
+    }
     return (
         <div>
-            <button>Получить посты</button>
+            {
+                postData.posts.map(item =>
+                    <div>
+                        <h1>{item.title}</h1>
+                        <h1>{item.body}</h1>
+                    </div>
+                )
+            }
         </div>
     );
 };

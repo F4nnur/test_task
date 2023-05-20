@@ -1,22 +1,16 @@
 import {put, call, takeEvery} from "redux-saga/effects"
-import {appAxiosInstance} from "../api/api";
-import {ApiUrls} from "../constants/urls";
 import {setPosts} from "../store/actions/posts/posts.actions";
 import {PostsActionsTypes} from "../constants/actions";
+import {getPostsAPI} from "../api/posts/posts.requests";
 
-
-export const getPostsAPI = async () => {
-    const { data } = await appAxiosInstance.get(ApiUrls.posts)
-    console.log(data)
-    return data
-}
+const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
 function* postsWorker () {
+    yield delay(500)
     const data = yield call(getPostsAPI)
-    const json = yield call(() => new Promise(resolve => resolve(data.json())))
-    yield put(setPosts(json))
+    yield put(setPosts(data.data))
 }
 
 export function* postsWatcher(){
-    yield takeEvery(PostsActionsTypes.FETCH_POSTS_DATA_SUCCESS, postsWorker)
+    yield takeEvery(PostsActionsTypes.ASYNC_FETCH_POSTS_DATA_SUCCESS, postsWorker)
 }
