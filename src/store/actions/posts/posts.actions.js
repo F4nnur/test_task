@@ -1,4 +1,3 @@
-import {FetchPostsSuccessAction, PostsState} from "../../reducers/posts/posts.types";
 import {PostsActionsTypes} from "../../../constants/actions";
 
 export const setPosts = () => ({

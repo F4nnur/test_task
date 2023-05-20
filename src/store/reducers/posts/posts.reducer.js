@@ -1,14 +1,13 @@
-import {PostsAction, PostsState} from "./posts.types";
 import {PostsActionsTypes} from "../../../constants/actions";
 
 
-const initialState: PostsState = {
+const initialState = {
     posts: [],
     isLoading: false,
     error: null
 };
 
-const postsReducer = (state = initialState, action:PostsAction): PostsState => {
+const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case PostsActionsTypes.FETCH_POSTS_DATA:
             return {isLoading: true, error: null, posts: []}
