@@ -1,4 +1,4 @@
-import {PostsActionsTypes} from "../../../constants/actions";
+import {CommentsActionTypes} from "../../../constants/actions";
 
 const initialState = {
     comments: [],
@@ -8,8 +8,12 @@ const initialState = {
 
 const commentsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case PostsActionsTypes.FETCH_POSTS_DATA_SUCCESS:
-            return {isLoading: false, error: null, posts: action.payload}
+        case CommentsActionTypes.FETCH_COMMENTS_DATA:
+            return {isLoading: true, error: null, posts: []}
+        case CommentsActionTypes.FETCH_COMMENTS_DATA_ERROR:
+            return {isLoading: true, error: null, posts: []}
+        case CommentsActionTypes.FETCH_COMMENTS_DATA_SUCCESS:
+            return {isLoading: false, error: null, comments: action.payload}
         default:
             return state
     }

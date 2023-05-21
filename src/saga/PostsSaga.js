@@ -1,7 +1,6 @@
 import {put, call, takeEvery} from "redux-saga/effects"
 import {setPosts, setPostsError, setPostsSuccess} from "../store/actions/posts/posts.actions";
 import {getPostsAPI} from "../api/posts/posts.requests";
-import {ApiUrls} from "../constants/urls";
 import {PostsActionsTypes} from "../constants/actions";
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))

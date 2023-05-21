@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {asyncSetPosts} from "../../store/actions/posts/posts.actions";
 import {InfinitySpin} from "react-loader-spinner";
 import s from './styles.module.css'
 import IMAGES from "../../constants/images";
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Comments from "./Comments";
 
 const PostsList = () => {
     const postData = useSelector(state => state.postsReducer)
-    const [showComments, setShowComments] = useState(false)
+    // const [showComments, setShowComments] = useState(true)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const PostsList = () => {
             {
                 postData.posts.map(item =>
                     <Card
-                        id={item.id}
+                        key={item.id}
                         style={{
                             width: '35%',
                             margin: 'auto auto',
@@ -45,14 +46,8 @@ const PostsList = () => {
                             <Card.Text>
                                 {item.body}
                             </Card.Text>
-                            <Button
-                                onvariant={"info"}
-                                onClick={() => setShowComments(!showComments)}
-                            >
-                                Коментарии
-                            </Button>
+                            <Comments itemId={item.id}/>
                         </Card.Body>
-                        {showComments ? <h1>Comment</h1> : null}
                     </Card>
                 )
             }
