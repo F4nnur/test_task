@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {asyncSetComments} from "../../store/actions/comments/comments.actions";
+import {Card} from "react-bootstrap";
 
 const Comments = (props) => {
     const [itemId] = useState(props.itemId)
@@ -26,7 +27,14 @@ const Comments = (props) => {
             >
                 Коментарии
             </Button>
-            { showComments ? itemId : null }
+            { comments && showComments ?
+                comments.map(item =>
+                    <Card key={item.id}>
+                        <Card.Title>{item.email}</Card.Title>
+                        <Card.Body>{item.body}</Card.Body>
+                    </Card>
+                )
+                : null }
         </div>
     );
 };

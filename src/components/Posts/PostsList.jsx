@@ -7,6 +7,7 @@ import IMAGES from "../../constants/images";
 // import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Comments from "./Comments";
+import {CardGroup} from "react-bootstrap";
 
 const PostsList = () => {
     const postData = useSelector(state => state.postsReducer)
@@ -32,7 +33,7 @@ const PostsList = () => {
                             width: '35%',
                             margin: 'auto auto',
                             marginBottom: '15px',
-                            top:'100px',
+                            top:'80px',
                             alignItems: 'center'
                     }}
                     >
