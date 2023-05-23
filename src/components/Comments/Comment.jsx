@@ -3,11 +3,14 @@ import Button from "react-bootstrap/Button";
 import {Card} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCommentsRequest} from "../../store/actions/comments/comments.actions";
+import {InfinitySpin} from "react-loader-spinner";
 
 const Comment = (props) => {
     const dispatch = useDispatch()
     const [showComments, setShowComments] = useState(false)
     const comments = useSelector(state => state.commentsReducer.comments)
+    const isLoading = useSelector(state => state.commentsReducer.isLoading)
+
     const handleCommentsToggle = (comment) => {
         if (props.postId in comments) {
             console.log(1)
@@ -16,6 +19,9 @@ const Comment = (props) => {
             dispatch(fetchCommentsRequest(props.postId))
             setShowComments(comment)
         }
+    }
+    if (isLoading && showComments) {
+        return <InfinitySpin width='100' color='#6A5ACD'/>
     }
     return (
         <div>
