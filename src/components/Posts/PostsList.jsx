@@ -4,19 +4,16 @@ import {asyncSetPosts} from "../../store/actions/posts/posts.actions";
 import {InfinitySpin} from "react-loader-spinner";
 import s from './styles.module.css'
 import IMAGES from "../../constants/images";
-// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Comments from "./Comments";
-import {CardGroup} from "react-bootstrap";
+import Comment from "../Comments/Comment";
 
 const PostsList = () => {
     const postData = useSelector(state => state.postsReducer)
-    // const [showComments, setShowComments] = useState(true)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(asyncSetPosts())
-    }, dispatch)
+    }, [dispatch])
 
     if (postData.isLoading) {
         return <div className={s.loader}>
@@ -47,7 +44,7 @@ const PostsList = () => {
                             <Card.Text>
                                 {item.body}
                             </Card.Text>
-                            <Comments itemId={item.id}/>
+                            <Comment postId={item.id}/>
                         </Card.Body>
                     </Card>
                 )

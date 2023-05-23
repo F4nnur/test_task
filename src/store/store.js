@@ -13,5 +13,6 @@ const reducers = combineReducers({
 });
 
 export const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+window.store = store
 
 sagaMiddleware.run(rootWatcher)

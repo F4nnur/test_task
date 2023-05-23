@@ -1,28 +1,26 @@
 import {put, call, takeEvery} from "redux-saga/effects"
 import {
-    setComments,
-    setCommentsError,
-    setCommentsSuccess,
+    fetchCommentsFailure,
+    fetchCommentsSuccess,
 } from "../store/actions/comments/comments.actions";
 import {getCommentApi} from "../api/posts/comments.requests";
 import {CommentsActionTypes} from "../constants/actions";
 
+
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
 function* commentsWorker (action) {
-    console.log(action)
+    const postId  = action.postId
     try {
         yield delay(500)
-        yield put(setComments())
-        const data = yield call(getCommentApi, action.id)
-        yield put(setCommentsSuccess(data.data))
+        const data = yield call(getCommentApi, postId)
+        yield put(fetchCommentsSuccess(postId, data.data))
     } catch (error) {
-        console.log(error)
-        yield put(setCommentsError('Произошла ошибка'))
+        yield put(fetchCommentsFailure('Произошла ошибка'))
     }
 
 }
 
 export function* commentsWatcher(){
-    yield takeEvery(CommentsActionTypes.ASYNC_FETCH_COMMENTS_DATA_SUCCESS, commentsWorker)
+    yield takeEvery(CommentsActionTypes.FETCH_COMMENTS_REQUEST, commentsWorker)
 }

@@ -4,19 +4,34 @@ const initialState = {
     comments: [],
     isLoading: true,
     error: null,
-    visible: false
 };
 
 const commentsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CommentsActionTypes.FETCH_COMMENTS_DATA:
-            return {isLoading: true, visible: false, error: null, posts: []}
-        case CommentsActionTypes.FETCH_COMMENTS_DATA_ERROR:
-            return {isLoading: true, visible: false, error: null, posts: []}
-        case CommentsActionTypes.FETCH_COMMENTS_DATA_SUCCESS:
-            return {isLoading: false, visible:true, error: null, comments: action.payload}
+        case CommentsActionTypes.FETCH_COMMENTS_REQUEST:
+            return {
+                ...state,
+                isLoading: true,
+                error: null,
+            };
+        case CommentsActionTypes.FETCH_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                comments: {
+                    ...state.comments,
+                    [action.payload.postId]: action.payload.comments,
+                },
+                isLoading: false,
+                error: null,
+            };
+        case CommentsActionTypes.FETCH_COMMENTS_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+            };
         default:
-            return state
+            return state;
     }
 };
 
