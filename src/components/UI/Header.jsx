@@ -11,7 +11,7 @@ import IMAGES from "../../constants/images";
 const Header = () => {
     return (
         <>
-            <Navbar key={'false'} bg="light" expand={'false'} className="mb-3" fixed={'top'}>
+            <Navbar key={'false'} bg="light" expand={'false'} className="mb-3 position-absolute" fixed={'top'}>
                 <Container fluid>
                     <Navbar.Brand>SPA</Navbar.Brand>
                     <Navbar.Toggle
