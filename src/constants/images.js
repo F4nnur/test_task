@@ -1,7 +1,9 @@
-import user from './../assets/images/user.svg'
+import user from './../assets/images/user.svg';
+import author from './../assets/images/FannurAkhmetov.jpg';
 
 const IMAGES = {
-    user
+    user,
+    author
 };
 
 export default IMAGES;

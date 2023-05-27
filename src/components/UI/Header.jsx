@@ -5,6 +5,8 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Nav from "react-bootstrap/Nav";
 import {ROUTES} from "../../constants/navigation";
 import {LinkContainer} from 'react-router-bootstrap'
+import {Image} from "react-bootstrap";
+import IMAGES from "../../constants/images";
 
 const Header = () => {
     return (
@@ -14,8 +16,6 @@ const Header = () => {
                     <Navbar.Brand>SPA</Navbar.Brand>
                     <Navbar.Toggle
                         aria-controls={`Navbar-expand-false`}
-                        // className={'ml-auto'}
-
                     />
                     <Navbar.Offcanvas
                         id={`Navbar-expand-false`}
@@ -24,6 +24,9 @@ const Header = () => {
                     >
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
+                                <Image src={IMAGES.author} roundedCircle style={{width: "200px", margin: '3px'}}/>
+                                <Nav.Item>Фаннур Ахметов</Nav.Item>
+                                <Nav.Item>AkhmetovFFQA@yandex.ru</Nav.Item>
                                 <LinkContainer to={ROUTES.MAIN}>
                                     <Nav.Link>Список постов</Nav.Link>
                                 </LinkContainer>
