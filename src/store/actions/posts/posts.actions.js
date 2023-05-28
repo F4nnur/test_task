@@ -1,6 +1,9 @@
 import {PostsActionsTypes} from "../../../constants/actions";
 
-export const setPostsSuccess = (payload) => ({type: PostsActionsTypes.FETCH_POSTS_DATA_SUCCESS, payload});
+export const setPostsSuccess = (data, x_total_count) => ({type: PostsActionsTypes.FETCH_POSTS_DATA_SUCCESS, payload: {data, x_total_count}});
 export const setPostsError = (payload) => ({type: PostsActionsTypes.FETCH_POSTS_DATA_ERROR, payload});
 export const setPosts = () => ({type: PostsActionsTypes.FETCH_POSTS_DATA});
-export const asyncSetPosts = () => ({type: PostsActionsTypes.ASYNC_FETCH_POSTS_DATA_SUCCESS})
+export const asyncSetPosts = (limit, page) => ({type: PostsActionsTypes.ASYNC_FETCH_POSTS_DATA_SUCCESS, payload: {limit, page}})
+
+export const setCurrentPage = (page) => ({type:PostsActionsTypes.SET_CURRENT_PAGE, page})
+export const asyncSetCurrentPage = (page) => ({type:PostsActionsTypes.ASYNC_SET_CURRENT_PAGE, page})

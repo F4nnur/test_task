@@ -13,7 +13,6 @@ const Comment = (props) => {
 
     const handleCommentsToggle = (comment) => {
         if (props.postId in comments) {
-            console.log(1)
             setShowComments(comment)
         } else {
             dispatch(fetchCommentsRequest(props.postId))

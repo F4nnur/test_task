@@ -3,17 +3,43 @@ import {PostsActionsTypes} from "../../../constants/actions";
 const initialState = {
     posts: [],
     isLoading: true,
-    error: null
+    error: null,
+    currentPage: 1,
+    perpPage: 10,
+    x_total_count: 0
 };
 
 const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case PostsActionsTypes.FETCH_POSTS_DATA:
-            return {isLoading: true, error: null, posts: []}
+            return {
+                ...state,
+                x_total_count: null,
+                isLoading: true,
+                error: null,
+            }
         case PostsActionsTypes.FETCH_POSTS_DATA_SUCCESS:
-            return {isLoading: false, error: null, posts: action.payload}
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                posts: action.payload.data,
+                x_total_count: action.payload.x_total_count
+            }
         case PostsActionsTypes.FETCH_POSTS_DATA_ERROR:
-            return {isLoading: true, error: action.payload, posts: []}
+            return {
+                ...state,
+                isLoading: true,
+                error: action.payload,
+                x_total_count: null
+            }
+        case PostsActionsTypes.SET_CURRENT_PAGE:
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                currentPage: action.page
+            }
         default:
             return state
     }
