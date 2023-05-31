@@ -10,3 +10,6 @@ export const asyncSetCurrentPage = (page) => ({type:PostsActionsTypes.ASYNC_SET_
 
 export const sortPosts = () => ({type:PostsActionsTypes.SORT_POSTS})
 export const asyncSortPosts = () => ({type:PostsActionsTypes.SORT_POSTS_SUCCESS})
+
+export const searchPosts = (value) => ({type: PostsActionsTypes.SEARCH_POSTS_SUCCESS, value})
+export const asyncSearchPosts = (value) => ({type: PostsActionsTypes.SEARCH_POSTS, value})

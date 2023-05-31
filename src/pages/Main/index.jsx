@@ -3,7 +3,7 @@ import PostsList from "../../components/Posts/PostsList";
 import Search from "../../components/UI/Search";
 import Select from "../../components/UI/Select";
 import MyPagination from "../../components/UI/MyPagination";
-import {asyncSetCurrentPage, asyncSetPosts} from "../../store/actions/posts/posts.actions";
+import {asyncSetCurrentPage, asyncSetPosts, sortPosts} from "../../store/actions/posts/posts.actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getPageCount} from "../../utils/pages";
 
@@ -23,10 +23,16 @@ const MainPage = () => {
         dispatch(asyncSetCurrentPage(value))
     }
 
+    const handleSort = () => {
+        dispatch(sortPosts())
+    }
+
     return (
         <div>
             <Search/>
-            <Select/>
+            <Select
+                onClick={handleSort}
+            />
             <PostsList postData={postData}/>
             <MyPagination
                 pagesCount={pagesCount}

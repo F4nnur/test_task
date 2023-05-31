@@ -1,6 +1,6 @@
 import {put, call, takeEvery} from "redux-saga/effects"
 import {
-    asyncSortPosts,
+    asyncSortPosts, searchPosts,
     setCurrentPage,
     setPosts,
     setPostsError,
@@ -33,8 +33,14 @@ function* sortPostsWorker() {
     yield put(asyncSortPosts())
 }
 
+function* searchPostWorker(action) {
+    const value = action.value
+    yield put(searchPosts(value))
+}
+
 export function* postsWatcher() {
     yield takeEvery(PostsActionsTypes.ASYNC_FETCH_POSTS_DATA_SUCCESS, postsWorker)
     yield takeEvery(PostsActionsTypes.ASYNC_SET_CURRENT_PAGE, setPageWorker)
     yield takeEvery(PostsActionsTypes.SORT_POSTS, sortPostsWorker)
+    yield takeEvery(PostsActionsTypes.SEARCH_POSTS, searchPostWorker)
 }
