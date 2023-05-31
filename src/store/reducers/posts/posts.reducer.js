@@ -40,6 +40,12 @@ const postsReducer = (state = initialState, action) => {
                 error: null,
                 currentPage: action.page
             }
+        case PostsActionsTypes.SORT_POSTS_SUCCESS:
+            const sorted = state.posts.map(a => a)
+            return {
+                ...state,
+                posts: sorted.sort((a, b) => (a.title < b.title ? -1 : 1))
+            }
         default:
             return state
     }

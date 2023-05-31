@@ -1,11 +1,17 @@
 import {put, call, takeEvery} from "redux-saga/effects"
-import {setCurrentPage, setPosts, setPostsError, setPostsSuccess} from "../store/actions/posts/posts.actions";
+import {
+    asyncSortPosts,
+    setCurrentPage,
+    setPosts,
+    setPostsError,
+    setPostsSuccess,
+} from "../store/actions/posts/posts.actions";
 import {getPostsAPI} from "../api/posts/posts.requests";
 import {PostsActionsTypes} from "../constants/actions";
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
-function* postsWorker (action) {
+function* postsWorker(action) {
     const limit = action.payload.limit
     const page = action.payload.page
     try {
@@ -18,12 +24,17 @@ function* postsWorker (action) {
     }
 }
 
-function* setPageWorker (action) {
+function* setPageWorker(action) {
     const page = action.page
     yield put(setCurrentPage(page))
 }
 
-export function* postsWatcher(){
+function* sortPostsWorker() {
+    yield put(asyncSortPosts())
+}
+
+export function* postsWatcher() {
     yield takeEvery(PostsActionsTypes.ASYNC_FETCH_POSTS_DATA_SUCCESS, postsWorker)
     yield takeEvery(PostsActionsTypes.ASYNC_SET_CURRENT_PAGE, setPageWorker)
+    yield takeEvery(PostsActionsTypes.SORT_POSTS, sortPostsWorker)
 }

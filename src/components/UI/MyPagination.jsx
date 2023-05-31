@@ -14,7 +14,7 @@ const MyPagination = ({pagesCount, onclick, page}) => {
         <>
             <div style={{display: 'flex' ,marginTop:'9%', alignItems: "center", justifyContent: 'center'}}>
                 {pages.map(item =>
-                    <Pagination onClick={() => handleClick(item)}>
+                    <Pagination key={item} onClick={() => handleClick(item)}>
                         <Pagination.Item active={item === page}>
                             {item}
                         </Pagination.Item>

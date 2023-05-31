@@ -7,3 +7,6 @@ export const asyncSetPosts = (limit, page) => ({type: PostsActionsTypes.ASYNC_FE
 
 export const setCurrentPage = (page) => ({type:PostsActionsTypes.SET_CURRENT_PAGE, page})
 export const asyncSetCurrentPage = (page) => ({type:PostsActionsTypes.ASYNC_SET_CURRENT_PAGE, page})
+
+export const sortPosts = () => ({type:PostsActionsTypes.SORT_POSTS})
+export const asyncSortPosts = () => ({type:PostsActionsTypes.SORT_POSTS_SUCCESS})
