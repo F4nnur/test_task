@@ -1,6 +1,7 @@
 import {put, call, takeEvery} from "redux-saga/effects"
 import {
-    asyncSortPosts, searchPosts,
+    asyncSearchPosts,
+    asyncSortPosts,
     setCurrentPage,
     setPosts,
     setPostsError,
@@ -35,7 +36,7 @@ function* sortPostsWorker() {
 
 function* searchPostWorker(action) {
     const value = action.value
-    yield put(searchPosts(value))
+    yield put(asyncSearchPosts(value))
 }
 
 export function* postsWatcher() {

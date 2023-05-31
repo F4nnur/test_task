@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PostsList from "../../components/Posts/PostsList";
 import Search from "../../components/UI/Search";
 import Select from "../../components/UI/Select";
 import MyPagination from "../../components/UI/MyPagination";
-import {asyncSetCurrentPage, asyncSetPosts, sortPosts} from "../../store/actions/posts/posts.actions";
+import {asyncSetCurrentPage, asyncSetPosts, searchPosts, sortPosts} from "../../store/actions/posts/posts.actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getPageCount} from "../../utils/pages";
 
@@ -14,6 +14,7 @@ const MainPage = () => {
     const limit = useSelector(state => state.postsReducer.perpPage)
     const totalCount = useSelector(state => state.postsReducer.x_total_count)
     const pagesCount = getPageCount(totalCount, limit)
+    const [value, setValue] = useState('');
 
     useEffect(() => {
         dispatch(asyncSetPosts(limit, page))
@@ -27,13 +28,21 @@ const MainPage = () => {
         dispatch(sortPosts())
     }
 
+    const handleSearch = () => {
+        if (value === '') {
+            dispatch(asyncSetPosts(limit, page))
+        } else {
+            dispatch(searchPosts(value))
+        }
+    }
+
     return (
         <div>
-            <Search/>
+            <Search value={value} setValue={setValue} onClick={handleSearch}/>
             <Select
                 onClick={handleSort}
             />
-            <PostsList postData={postData}/>
+            { postData.posts.length ? <PostsList postData={postData}/> : <h1 className='text-center'>Посты не найдены</h1>}
             <MyPagination
                 pagesCount={pagesCount}
                 onclick={handleClick}
