@@ -47,8 +47,9 @@ const postsReducer = (state = initialState, action) => {
                 posts: sorted.sort((a, b) => (a.title < b.title ? -1 : 1))
             }
         case PostsActionsTypes.SEARCH_POSTS_SUCCESS:
-            const value = action.value
-            const postsFiltered = state.posts.filter(val => val.title.toLowerCase().includes(value))
+            const value = action.payload.value
+            const posts = action.payload.posts
+            const postsFiltered = posts.filter(val => val.title.toLowerCase().includes(value))
             return {
                 ...state,
                 posts: postsFiltered

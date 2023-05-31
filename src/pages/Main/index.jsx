@@ -32,7 +32,7 @@ const MainPage = () => {
         if (value === '') {
             dispatch(asyncSetPosts(limit, page))
         } else {
-            dispatch(searchPosts(value))
+            dispatch(searchPosts(value, postData.posts))
         }
     }
 

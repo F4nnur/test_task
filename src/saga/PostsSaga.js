@@ -35,8 +35,9 @@ function* sortPostsWorker() {
 }
 
 function* searchPostWorker(action) {
-    const value = action.value
-    yield put(asyncSearchPosts(value))
+    const value = action.payload.value
+    const posts = action.payload.posts
+    yield put(asyncSearchPosts(value, posts))
 }
 
 export function* postsWatcher() {
