@@ -6,6 +6,8 @@ import MyPagination from "../../components/UI/MyPagination";
 import {asyncSetCurrentPage, asyncSetPosts, searchPosts, sortPosts} from "../../store/actions/posts/posts.actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getPageCount} from "../../utils/pages";
+import {InfinitySpin} from "react-loader-spinner";
+import s from "../../components/Posts/styles.module.css";
 
 const MainPage = () => {
     const dispatch = useDispatch()
@@ -42,7 +44,13 @@ const MainPage = () => {
             <Select
                 onClick={handleSort}
             />
-            { postData.posts.length ? <PostsList postData={postData}/> : <h1 className='text-center'>Посты не найдены</h1>}
+            {postData.posts.length
+                ?
+                <PostsList postData={postData}/>
+                :
+                <div className={s.loader}>
+                    <InfinitySpin width='200' color='#6A5ACD'/>
+                </div>}
             <MyPagination
                 pagesCount={pagesCount}
                 onclick={handleClick}

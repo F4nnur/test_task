@@ -1,9 +1,10 @@
 import React from 'react';
+import UserCard from "../../components/User/Card";
 
-const UserInfoPage = () => {
+const UserInfoPage = ({user}) => {
     return (
-        <div>
-            UserInfo
+        <div style={{display: 'flex', justifyContent: 'start', marginTop: '100px'}}>
+            <UserCard/>
         </div>
     );
 };

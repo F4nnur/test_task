@@ -4,8 +4,11 @@ import s from './styles.module.css'
 import IMAGES from "../../constants/images";
 import Card from 'react-bootstrap/Card';
 import Comment from "../Comments/Comment";
+import { useNavigate } from 'react-router-dom'
 
 const PostsList = ({postData}) => {
+    const router = useNavigate()
+
     if (postData.isLoading) {
         return <div className={s.loader}>
             <InfinitySpin width='200' color='#6A5ACD'/>
@@ -26,9 +29,10 @@ const PostsList = ({postData}) => {
                         }}
                     >
                         <Card.Img
+                            onClick={() => router(`/userinfo/${item.id}`)}
                             variant="center"
                             src={IMAGES.user}
-                            style={{width: '100px'}}
+                            style={{width: '100px', cursor: 'pointer'}}
                         />
                         <Card.Body>
                             <Card.Title>{item.title}</Card.Title>

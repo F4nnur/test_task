@@ -1,5 +1,5 @@
 const MAIN = "/"
 const ABOUT = "/about"
-const USERINFO = "/userinfo"
+const USERINFO = "/userinfo/:id"
 
 export const ROUTES = {ABOUT, USERINFO, MAIN}
