@@ -6,8 +6,11 @@ import Card from 'react-bootstrap/Card';
 import Comment from "../Comments/Comment";
 import { useNavigate } from 'react-router-dom'
 
-const PostsList = ({postData}) => {
+const PostsList = ({postData, limit, page}) => {
     const router = useNavigate()
+    const tempIndex = page === 1 ? 0 : page - 1
+    const index = tempIndex * limit
+    const posts = postData.posts.slice(index, index + limit)
 
     if (postData.isLoading) {
         return <div className={s.loader}>
@@ -17,7 +20,7 @@ const PostsList = ({postData}) => {
     return (
         <div className='d-flex flex-wrap flex-row'>
             {
-                postData.posts.map(item =>
+                posts.map(item =>
                     <Card
                         key={item.id}
                         style={{

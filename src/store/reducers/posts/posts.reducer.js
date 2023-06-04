@@ -5,7 +5,7 @@ const initialState = {
     isLoading: true,
     error: null,
     currentPage: 1,
-    perpPage: 10,
+    perPage: 10,
     x_total_count: 0
 };
 

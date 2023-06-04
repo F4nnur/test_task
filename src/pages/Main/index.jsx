@@ -13,14 +13,14 @@ const MainPage = () => {
     const dispatch = useDispatch()
     const postData = useSelector(state => state.postsReducer)
     const page = useSelector(state => state.postsReducer.currentPage)
-    const limit = useSelector(state => state.postsReducer.perpPage)
+    const limit = useSelector(state => state.postsReducer.perPage)
     const totalCount = useSelector(state => state.postsReducer.x_total_count)
     const pagesCount = getPageCount(totalCount, limit)
     const [value, setValue] = useState('');
 
     useEffect(() => {
-        dispatch(asyncSetPosts(limit, page))
-    }, [page, dispatch, limit])
+        dispatch(asyncSetPosts())
+    }, [dispatch])
 
     const handleClick = (value) => {
         dispatch(asyncSetCurrentPage(value))
@@ -46,7 +46,7 @@ const MainPage = () => {
             />
             {postData.posts.length
                 ?
-                <PostsList postData={postData}/>
+                <PostsList page={page} limit={limit} postData={postData}/>
                 :
                 <div className={s.loader}>
                     <InfinitySpin width='200' color='#6A5ACD'/>
