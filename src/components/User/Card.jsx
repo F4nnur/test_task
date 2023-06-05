@@ -1,7 +1,10 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import {useNavigate} from "react-router-dom";
 
 const UserCard = ({userData}) => {
+    const router = useNavigate()
     return (
         <Card style={{display: 'flex', justifyContent: 'center', width: '40rem', margin: '20px'}}>
             {userData.map(user =>
@@ -14,6 +17,7 @@ const UserCard = ({userData}) => {
                     <Card.Text> Website: {user.website}</Card.Text>
                 </Card.Body>
             )}
+            <Button onClick={() => router('/')}>Назад</Button>
         </Card>
     );
 };
