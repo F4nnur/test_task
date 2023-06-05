@@ -33,7 +33,7 @@ const PostsList = ({postData, posts}) => {
                         }}
                     >
                         <Card.Img
-                            onClick={() => router(`/userinfo/${item.userId}`)}
+                            onClick={() => router(`/test_task/userinfo/${item.userId}`)}
                             variant="center"
                             src={IMAGES.user}
                             style={{width: '100px', cursor: 'pointer'}}

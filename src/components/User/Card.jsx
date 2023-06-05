@@ -17,7 +17,7 @@ const UserCard = ({userData}) => {
                     <Card.Text> Website: {user.website}</Card.Text>
                 </Card.Body>
             )}
-            <Button onClick={() => router('/')}>Назад</Button>
+            <Button onClick={() => router('/test_task')}>Назад</Button>
         </Card>
     );
 };
