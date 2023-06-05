@@ -19,7 +19,7 @@ const PostsList = ({postData, posts}) => {
         </div>
     }
     return (
-        <div className='d-flex flex-wrap flex-row w-100'>
+        <div>
             {
                 posts.map(item =>
                     <Card
