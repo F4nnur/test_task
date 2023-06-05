@@ -1,5 +1,6 @@
 export const ApiUrls = {
     posts: 'posts',
-    comments: 'posts/'
+    comments: 'posts/',
+    user: 'users'
 };
 

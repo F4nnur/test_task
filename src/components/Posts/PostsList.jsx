@@ -4,16 +4,17 @@ import s from './styles.module.css'
 import IMAGES from "../../constants/images";
 import Card from 'react-bootstrap/Card';
 import Comment from "../Comments/Comment";
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
-const PostsList = ({postData, limit, page}) => {
+const PostsList = ({postData, posts}) => {
     const router = useNavigate()
-    const tempIndex = page === 1 ? 0 : page - 1
-    const index = tempIndex * limit
-    const posts = postData.posts.slice(index, index + limit)
 
     if (postData.isLoading) {
-        return <div className={s.loader}>
+        return <div className={s.loader} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
             <InfinitySpin width='200' color='#6A5ACD'/>
         </div>
     }
@@ -32,7 +33,7 @@ const PostsList = ({postData, limit, page}) => {
                         }}
                     >
                         <Card.Img
-                            onClick={() => router(`/userinfo/${item.id}`)}
+                            onClick={() => router(`/userinfo/${item.userId}`)}
                             variant="center"
                             src={IMAGES.user}
                             style={{width: '100px', cursor: 'pointer'}}

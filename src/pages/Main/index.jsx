@@ -17,6 +17,9 @@ const MainPage = () => {
     const totalCount = useSelector(state => state.postsReducer.x_total_count)
     const pagesCount = getPageCount(totalCount, limit)
     const [value, setValue] = useState('');
+    const tempIndex = page === 1 ? 0 : page - 1
+    const index = tempIndex * limit
+    const posts = postData.posts.slice(index, index + limit)
 
     useEffect(() => {
         dispatch(asyncSetPosts())
@@ -28,11 +31,12 @@ const MainPage = () => {
 
     const handleSort = () => {
         dispatch(sortPosts())
+        dispatch(asyncSetCurrentPage(1))
     }
 
     const handleSearch = () => {
         if (value === '') {
-            dispatch(asyncSetPosts(limit, page))
+            dispatch(asyncSetPosts())
         } else {
             dispatch(searchPosts(value, postData.posts))
         }
@@ -46,7 +50,7 @@ const MainPage = () => {
             />
             {postData.posts.length
                 ?
-                <PostsList page={page} limit={limit} postData={postData}/>
+                <PostsList posts={posts} page={page} limit={limit} postData={postData}/>
                 :
                 <div className={s.loader}>
                     <InfinitySpin width='200' color='#6A5ACD'/>
