@@ -7,10 +7,10 @@ const AboutMePage = () => {
         <div>
             <header style={{
                 display: 'flex',
-                margin: 'auto auto',
-                alignItems: 'center',
+                margin: '70px 20px',
+                alignItems: 'start',
                 gap: '20px',
-                justifyContent: 'center',
+                justifyContent: 'start',
                 marginTop: '60px'
             }}>
                 <div>
@@ -32,7 +32,7 @@ const AboutMePage = () => {
                     </div>
                 </div>
             </header>
-            <div style={{display: 'block', margin: '100px 480px'}}>
+            <div style={{display: 'flex', margin: '10px 50px'}}>
                 <section>
                     <h2 style={{fontSize: '25px', lineHeight: '1.5'}}>Обо мне</h2>
                     <p style={{lineHeight: '1.5', marginBottom: '8px'}}>
@@ -48,7 +48,7 @@ const AboutMePage = () => {
                     </p>
                 </section>
                 <section>
-                    <h2 style={{fontSize: '25px', lineHeight: '1.5'}}>Работа</h2>
+                    <h2 style={{fontSize: '25px', lineHeight: '1.5'}}>Опыт работы</h2>
                     <table style={{
                         display: 'table',
                         borderCollapse: 'separate',
