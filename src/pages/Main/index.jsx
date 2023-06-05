@@ -44,7 +44,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <Search value={value} setValue={setValue} onClick={handleSearch}/>
+            <Search value={value} setValue={setValue} onCh={handleSearch}/>
             <Select
                 onClick={handleSort}
             />

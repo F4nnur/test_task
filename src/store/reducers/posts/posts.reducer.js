@@ -49,10 +49,9 @@ const postsReducer = (state = initialState, action) => {
         case PostsActionsTypes.SEARCH_POSTS_SUCCESS:
             const value = action.payload.value
             const posts = action.payload.posts
-            const postsFiltered = posts.filter(val => val.title.toLowerCase().includes(value))
             return {
                 ...state,
-                posts: postsFiltered
+                posts: [...posts].filter(val => val.title.toLowerCase().includes(value))
             }
         default:
             return state

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Form} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-const Search = ({value, setValue, onClick}) => {
-    const handleSearch = () => {
-        onClick()
+const Search = ({value, setValue, onCh}) => {
+    const handleSearch = (e) => {
+        setValue(e.target.value)
+        onCh()
     }
 
     return (
@@ -14,14 +14,8 @@ const Search = ({value, setValue, onClick}) => {
                 placeholder="Поиск"
                 className="me-2"
                 aria-label="Search"
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => handleSearch(e)}
             />
-            <Button
-                variant="outline-success"
-                onClick={handleSearch}
-            >
-                Найти
-            </Button>
         </Form>
     );
 };
